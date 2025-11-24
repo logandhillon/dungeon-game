@@ -11,8 +11,8 @@ import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
 import com.logandhillon.dungeongame.entity.Entity;
 import com.logandhillon.dungeongame.entity.Player;
-import com.logandhillon.dungeongame.model.Model3D;
-import com.logandhillon.dungeongame.model.RoomModel;
+import com.logandhillon.dungeongame.entity.model.Model3D;
+import com.logandhillon.dungeongame.entity.model.RoomModel;
 
 import java.util.ArrayList;
 

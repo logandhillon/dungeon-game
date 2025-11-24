@@ -1,4 +1,4 @@
-package com.logandhillon.dungeongame.model;
+package com.logandhillon.dungeongame.entity.model;
 
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g3d.*;
