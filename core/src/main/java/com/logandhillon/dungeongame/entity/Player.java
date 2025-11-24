@@ -12,6 +12,8 @@ import com.badlogic.gdx.math.Vector3;
 public class Player extends Entity {
     private final PerspectiveCamera cam;
 
+    private static final float FOV_Y = 67;
+
     private static final float MOVE_SPEED = 5f; // units per second
     private static final float MOUSE_SENS = 12.5f; // degrees per second
 
@@ -23,7 +25,7 @@ public class Player extends Entity {
         super();
 
         // camera setup
-        cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        cam = new PerspectiveCamera(FOV_Y, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.position.set(spawnAt);
         cam.lookAt(0f, 0f, 0f);
         cam.near = 1f;

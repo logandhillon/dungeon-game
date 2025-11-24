@@ -39,9 +39,17 @@ public class Main extends ApplicationAdapter {
         env.add(new DirectionalLight().set(1f, 1f, 1f, -1f, -0.8f, -0.2f));
 
         // Model creation
-        RoomModel room = new RoomModel(1f, Color.BLUE);
-        models.add(room);
-        room.getModelInstance().transform.translate(2,1,0);
+        models.add(new RoomModel(new Vector3(0,0,0),
+                                 new Vector3(5f,5f,0.1f),
+                                 Color.BLUE));
+
+        models.add(new RoomModel(new Vector3(0,0,5f),
+                                 new Vector3(5f,5f,0.1f),
+                                 Color.YELLOW));
+
+        models.add(new RoomModel(new Vector3(0,0,0),
+                                 new Vector3(4f,4f,5f),
+                                 Color.RED));
 
         modelBatch = new ModelBatch();
     }
