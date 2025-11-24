@@ -41,7 +41,8 @@ public class Main extends ApplicationAdapter {
         // Model creation
         models.add(new RoomModel(new Vector3(0,0,0),
                                  new Vector3(4f,4f,5f),
-                                 Color.RED));
+                                 Color.RED,
+                                 false));
 
         modelBatch = new ModelBatch();
     }

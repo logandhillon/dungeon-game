@@ -23,12 +23,14 @@ public class RoomModel extends Model3D {
      * @param pos position of room
      * @param s size of room
      * @param color color of all walls
+     * @param buildOutside generates faces that face outside
      */
-    public RoomModel(Vector3 pos, Vector3 s, Color color) {
+    public RoomModel(Vector3 pos, Vector3 s, Color color, boolean buildOutside) {
         ModelBuilder builder = new ModelBuilder();
         builder.begin();
 
         Material mat = new Material(ColorAttribute.createDiffuse(color));
+
         long attrs = VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal;
 
         // 3d array of all ordered points for room. indices: ( part, plane, coordinate )
@@ -42,7 +44,7 @@ public class RoomModel extends Model3D {
         };
 
         for (int i = 0; i < faces.length; i++) {
-            // front-facing rect
+            // inner-facing rect
             builder.part(PART_NAMES[i], GL20.GL_TRIANGLES, attrs, mat)
                    .rect(
                        faces[i][0][0], faces[i][0][1], faces[i][0][2],
@@ -52,15 +54,16 @@ public class RoomModel extends Model3D {
                        faces[i][4][0], faces[i][4][1], faces[i][4][2]
                    );
 
-            // back-facing rect
-            builder.part(PART_NAMES[i] + "_back", GL20.GL_TRIANGLES, attrs, mat)
-                   .rect(
-                       faces[i][3][0], faces[i][3][1], faces[i][3][2],
-                       faces[i][2][0], faces[i][2][1], faces[i][2][2],
-                       faces[i][1][0], faces[i][1][1], faces[i][1][2],
-                       faces[i][0][0], faces[i][0][1], faces[i][0][2],
-                       faces[i][5][0], faces[i][5][1], faces[i][5][2]
-                   );
+            // outer-facing rect uses same mat
+            if (buildOutside)
+                builder.part(PART_NAMES[i] + "_out", GL20.GL_TRIANGLES, attrs, mat)
+                       .rect(
+                           faces[i][3][0], faces[i][3][1], faces[i][3][2],
+                           faces[i][2][0], faces[i][2][1], faces[i][2][2],
+                           faces[i][1][0], faces[i][1][1], faces[i][1][2],
+                           faces[i][0][0], faces[i][0][1], faces[i][0][2],
+                           faces[i][5][0], faces[i][5][1], faces[i][5][2]
+                       );
         }
 
         model = builder.end();
